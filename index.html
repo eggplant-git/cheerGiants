@@ -345,6 +345,82 @@
     .song-name { font-size: 16px; }
     .lyrics-text { font-size: 15px; }
   }
+
+  /* Official lyrics modal */
+  .official-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 16px;
+  }
+  .official-modal.open { display: flex; }
+  .official-modal-panel {
+    width: min(980px, 100%);
+    height: min(88vh, 820px);
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.55);
+    display: flex;
+    flex-direction: column;
+  }
+  .official-modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    background: #101a3a;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .official-modal-title {
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .official-modal-close {
+    border: 0;
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .official-modal-frame {
+    flex: 1;
+    border: 0;
+    width: 100%;
+    background: #fff;
+  }
+  .official-inline-btn {
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 11px;
+    border: 1px solid rgba(255,179,71,.55);
+    border-radius: 8px;
+    background: rgba(255,179,71,.08);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .official-inline-btn:hover { background: rgba(255,179,71,.16); }
+  body.modal-open { overflow: hidden; }
+
+  @media (max-width: 520px) {
+    .official-modal { padding: 0; }
+    .official-modal-panel { height: 100vh; border-radius: 0; }
+  }
+
 </style>
 </head>
 <body>
@@ -583,8 +659,8 @@ Here we go キシーダー オーオーオー オーオオー
         </div>
         <div class="song-lyrics">
           <div class="lyrics-text">【2026年追加】</div>
-          <div class="note">歌詞は読売ジャイアンツ応援団公式サイトで確認できます。</div>
-          <a class="official-link" href="https://giants-cheeringclub.com/cheeringsong/" target="_blank" rel="noopener noreferrer">▶ 公式歌詞ページを見る</a>
+          <div class="note">公式歌詞をこのサイト内のウィンドウで参照できます。</div>
+          <button class="official-inline-btn" type="button" onclick="openOfficialLyrics('浦田俊輔','https://giants-cheeringclub.com/cheeringsong/')">▶ 公式歌詞をサイト内で見る</button>
         </div>
       </div>
 
@@ -751,8 +827,8 @@ GoGo Let's Go とごう</div>
         </div>
         <div class="song-lyrics">
           <div class="lyrics-text">【2026年追加】</div>
-          <div class="note">歌詞は読売ジャイアンツ応援団公式サイトで確認できます。</div>
-          <a class="official-link" href="https://giants-cheeringclub.com/cheeringsong/" target="_blank" rel="noopener noreferrer">▶ 公式歌詞ページを見る</a>
+          <div class="note">公式歌詞をこのサイト内のウィンドウで参照できます。</div>
+          <button class="official-inline-btn" type="button" onclick="openOfficialLyrics('竹丸和幸','https://giants-cheeringclub.com/cheeringsong/')">▶ 公式歌詞をサイト内で見る</button>
         </div>
       </div>
 
@@ -1012,8 +1088,8 @@ HEY！HEY！（選手名）</div>
         </div>
         <div class="song-lyrics">
           <div class="lyrics-text">2026年8月11日から使用開始の新チャンステーマ</div>
-          <div class="note">歌詞・音源は読売ジャイアンツ応援団公式発表をご確認ください。</div>
-          <a class="official-link" href="https://giants-cheeringclub.com/news/1270/" target="_blank" rel="noopener noreferrer">▶ 公式発表（歌詞・音源）を見る</a>
+          <div class="note">公式発表の歌詞・音源案内をこのサイト内のウィンドウで参照できます。</div>
+          <button class="official-inline-btn" type="button" onclick="openOfficialLyrics('G-allant（ギャラント）','https://giants-cheeringclub.com/news/1270/')">▶ 公式歌詞・発表をサイト内で見る</button>
         </div>
       </div>
 
@@ -1148,6 +1224,17 @@ Let's Go×3 オー（選手名）</div>
 
 </div><!-- /mainContent -->
 
+
+<div class="official-modal" id="officialModal" role="dialog" aria-modal="true" aria-labelledby="officialModalTitle">
+  <div class="official-modal-panel">
+    <div class="official-modal-head">
+      <div class="official-modal-title" id="officialModalTitle">公式歌詞</div>
+      <button class="official-modal-close" type="button" aria-label="閉じる" onclick="closeOfficialLyrics()">×</button>
+    </div>
+    <iframe class="official-modal-frame" id="officialModalFrame" title="読売ジャイアンツ応援団公式ページ"></iframe>
+  </div>
+</div>
+
 <div class="no-results" id="noResults">
   <div class="emoji">⚾</div>
   <p>「<span id="noResultsQuery"></span>」に一致する応援歌が見つかりませんでした</p>
@@ -1265,6 +1352,35 @@ Let's Go×3 オー（選手名）</div>
   function toggleCard(header) {
     header.closest('.song-card').classList.toggle('open');
   }
+
+
+  // Official lyrics modal (keeps the user on this site)
+  const officialModal = document.getElementById('officialModal');
+  const officialModalFrame = document.getElementById('officialModalFrame');
+  const officialModalTitle = document.getElementById('officialModalTitle');
+
+  function openOfficialLyrics(title, url) {
+    officialModalTitle.textContent = `公式歌詞・発表：${title}`;
+    officialModalFrame.src = url;
+    officialModal.classList.add('open');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeOfficialLyrics() {
+    officialModal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    officialModalFrame.src = 'about:blank';
+  }
+
+  officialModal.addEventListener('click', e => {
+    if (e.target === officialModal) closeOfficialLyrics();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && officialModal.classList.contains('open')) {
+      closeOfficialLyrics();
+    }
+  });
 
   window.addEventListener('scroll', () => {
     scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
