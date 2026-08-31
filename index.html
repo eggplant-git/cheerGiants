@@ -273,6 +273,33 @@
     line-height: 1.6;
   }
 
+  /* New badge */
+  .new-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 6px;
+    border-radius: 5px;
+    background: var(--orange);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    vertical-align: middle;
+    letter-spacing: .04em;
+  }
+
+  .official-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--orange);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .official-link:hover {
+    text-decoration: underline;
+  }
+
   /* Count badge */
   .count-badge {
     background: rgba(255,255,255,0.1);
@@ -346,6 +373,7 @@
 </div>
 
 <div class="search-stats" id="searchStats"></div>
+<div style="max-width:900px;margin:8px auto 0;padding:0 14px;color:#aaa;font-size:11px;text-align:right;">2026年8月31日更新：浦田俊輔・竹丸和幸・G-allantを追加</div>
 
 <div class="content" id="mainContent">
 
@@ -354,7 +382,7 @@
     <div class="section-header" onclick="toggleSection('sec-player')">
       <span class="section-tag tag-player">選手別</span>
       <span class="section-title">選手応援歌</span>
-      <span class="count-badge">26曲</span>
+      <span class="count-badge">28曲</span>
       <span class="chevron">▾</span>
     </div>
     <div class="section-body">
@@ -547,6 +575,19 @@ Here we go キシーダー オーオーオー オーオオー
         </div>
       </div>
 
+      <div class="song-card" data-name="浦田俊輔 浦田 うらた 俊輔" data-category="player">
+        <div class="song-header" onclick="toggleCard(this)">
+          <span class="song-num">#32</span>
+          <span class="song-name">浦田俊輔 <span class="new-badge">NEW</span></span>
+          <span class="song-toggle">▾</span>
+        </div>
+        <div class="song-lyrics">
+          <div class="lyrics-text">【2026年追加】</div>
+          <div class="note">歌詞は読売ジャイアンツ応援団公式サイトで確認できます。</div>
+          <a class="official-link" href="https://giants-cheeringclub.com/cheeringsong/" target="_blank" rel="noopener noreferrer">▶ 公式歌詞ページを見る</a>
+        </div>
+      </div>
+
       <div class="song-card" data-name="泉口友汰 泉口 いずぐち" data-category="player">
         <div class="song-header" onclick="toggleCard(this)">
           <span class="song-num">#35</span>
@@ -699,6 +740,19 @@ GoGo Let's Go いおり</div>
           <div class="lyrics-text">魅せろ華麗なステージ しなる豪腕眩しく
 翔けそれ征（ゆ）け戸郷 明日を目指して
 GoGo Let's Go とごう</div>
+        </div>
+      </div>
+
+      <div class="song-card" data-name="竹丸和幸 竹丸 たけまる" data-category="player">
+        <div class="song-header" onclick="toggleCard(this)">
+          <span class="song-num">#21</span>
+          <span class="song-name">竹丸和幸 <span class="new-badge">NEW</span></span>
+          <span class="song-toggle">▾</span>
+        </div>
+        <div class="song-lyrics">
+          <div class="lyrics-text">【2026年追加】</div>
+          <div class="note">歌詞は読売ジャイアンツ応援団公式サイトで確認できます。</div>
+          <a class="official-link" href="https://giants-cheeringclub.com/cheeringsong/" target="_blank" rel="noopener noreferrer">▶ 公式歌詞ページを見る</a>
         </div>
       </div>
 
@@ -860,7 +914,7 @@ GoGo Let's Go（選手名）</div>
     <div class="section-header" onclick="toggleSection('sec-chance')">
       <span class="section-tag tag-chance">チャンス</span>
       <span class="section-title">チャンステーマ</span>
-      <span class="count-badge">5曲</span>
+      <span class="count-badge">6曲</span>
       <span class="chevron">▾</span>
     </div>
     <div class="section-body">
@@ -947,6 +1001,19 @@ HEY！HEY！Let's Go ジャイアンツ</div>
 （選手名）ヒッパレ
 オー HEY！ オー HEY！
 HEY！HEY！（選手名）</div>
+        </div>
+      </div>
+
+      <div class="song-card" data-name="G-allant ギャラント チャンステーマ 新曲 2026" data-category="chance">
+        <div class="song-header" onclick="toggleCard(this)">
+          <span class="song-num">🆕</span>
+          <span class="song-name">G-allant（ギャラント） <span class="new-badge">NEW</span></span>
+          <span class="song-toggle">▾</span>
+        </div>
+        <div class="song-lyrics">
+          <div class="lyrics-text">2026年8月11日から使用開始の新チャンステーマ</div>
+          <div class="note">歌詞・音源は読売ジャイアンツ応援団公式発表をご確認ください。</div>
+          <a class="official-link" href="https://giants-cheeringclub.com/news/1270/" target="_blank" rel="noopener noreferrer">▶ 公式発表（歌詞・音源）を見る</a>
         </div>
       </div>
 
